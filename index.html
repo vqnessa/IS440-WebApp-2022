@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Permission Request Form</title>
+</head>
+
+<body>
+    <header>
+        <h1>Permission Request Form</h1>
+    </header>
+    <main>
+        <div class="form_div">
+            <form>
+                <div class="user_info">
+                    <h3>User Information</h3>
+                    <input type="text" name="employee_name" placeholder="Employee Name" required/>
+                    <input type="text" name="employee_id" placeholder="Employee ID" required/>
+                    <input type="text" name="username" placeholder="Username" required/>
+                    <input type="text" name="department" placeholder="Department"/>
+                    <input type="text" name="supervisor" placeholder="Supervisor" required/>
+                </div>
+                <div class="permission_type">
+                    <h3>Permission Type</h3>
+                    <div>
+                        <p>Permission Change Request For</p>
+                        <input type="file" name="file" id="file" class="file_name" />
+                        <label for="file">Choose File</label> 
+                    </div>
+                    <div>
+                        <input type="checkbox" name="read_permission"/>
+                        <label for="read_permisson">Read</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="write_permission"/>
+                        <label for="write_permission">Write</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="execute_permission"/>
+                        <label for="execute_permission">Execute</label>
+                    </div>
+                </div>
+                <div class="permission_reason">
+                    <h3>Permission Reason</h3>
+                    <input type="text" id="reasoning" name="reasoning" placeholder="Permission Change Reasoning"
+                        required/>
+                    <input type="email" placeholder="Requester's Email" id="requesters_email" name="requesters_email"
+                        placeholder="Requester's Contact Email" required/>
+                    <input type="text" id="comment" name="comment" placeholder="Any Comments?"/>
+
+                </div>
+                <button><a href="https://vqnessa.github.io/IS440-WebApp-2022/confirmation.html">Submit</a></button>
+            </form>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+
+</html>
