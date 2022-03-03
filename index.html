@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Permission Request Form</title>
+</head>
+
+<body>
+    <header>
+        <h1>Permission Request Form</h1>
+    </header>
+    <main>
+        <div class="form_div">
+            <form id="user_form">
+                <div class="user_info">
+                    <h2>User Information</h2>
+                    <h4>*Indicates Required Fields</h4>
+                    <input type="text" id="employee_name" name="employee_name" placeholder="*Employee Name" required/>
+                    <input type="text" id="employee_id" name="employee_id" placeholder="*Employee ID" required/>
+                    <input type="text" id="username" name="username" placeholder="*Username" required/>
+                    <input type="text" id="department" name="department" placeholder="Department"/>
+                    <input type="text" id="supervisor" name="supervisor" placeholder="*Supervisor" required/>
+                </div>
+                <div class="permission_type">
+                    <h2>Permission Type</h2>
+                    <h4>*Indicates Required Fields</h4>
+                    <br>
+                    <div>
+                        <p>*Change Request For</p>
+                        <input type="file" id="file" name="file" class="file_name" required/>
+                        <label for="file">Choose File</label>
+                        <div id="file-filename"></div>
+                    </div>
+                    <br>
+                    <p>*Requested User Permissions</p>
+                    <div>
+                        <input type="checkbox" id="read_permission" value="x"/>
+                        <label for="read_permisson">Read</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="write_permission" value="x"/>
+                        <label for="write_permission">Write</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="execute_permission" value="x"/>
+                        <label for="execute_permission">Execute</label>
+                    </div>
+                </div>
+                <div class="permission_reason">
+                    <h2>Permission Reason</h2>
+                    <h4>*Indicates Required Fields</h4>
+                    <input type="text" id="reasoning" name="reasoning" placeholder="*Permission Change Reasoning" required/>
+                    <input type="email" id="requesters_email" name="requesters_email" placeholder="*Requester's Email" required/>
+                    <input type="text" id="comment" name="comment" placeholder="Other Comments"/>
+
+                </div>
+
+                <div class="submit_button">
+                    <button type="submit" onclick="tbl(); complete()">Submit</button>
+                </div>
+                <br>
+                <br>
+                
+                <table id="permission_fixed">
+                    <tr>
+                        <th>Read</th>
+                        <th>Write</th>
+                        <th>Execute</th>
+                    </tr>
+                </table>
+
+                <div class="reset_button">
+                    <button type="button" onclick="origin()">New Request</button>
+                </div>
+
+                <script>
+                    var input = document.getElementById('file');
+                    var infoArea = document.getElementById('file-filename');
+
+                    input.addEventListener('change', showFileName );
+
+                    function showFileName(event) {
+                        var input = event.srcElement;
+                        var fileName = input.files[0].name;
+                        infoArea.textContent = fileName;
+                        }
+                                                        
+                    function tbl() {
+                        event.preventDefault();
+                        console.log(permission_fixed)
+                        var row = permission_fixed.insertRow(1);
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
+                        var cell3 = row.insertCell(2);
+                        var read = document.getElementById("read_permission");
+                        var write = document.getElementById("write_permission");
+                        var execute = document.getElementById("execute_permission");
+                        
+                        if(document.getElementById("employee_name").value == ""){
+                            alert("Required Field(s) Empty - Employee Name");
+                        }
+                        else if(document.getElementById("employee_id").value == ""){
+                            alert("Required Field(s) Empty - Employee ID");
+                        }
+                        else if(document.getElementById("username").value == ""){
+                            alert("Required Field(s) Empty - Username");
+                        }
+                        else if(document.getElementById("supervisor").value == ""){
+                            alert("Required Field(s) Empty - Supervisor");
+                        }
+                        else if(document.getElementById("file").value == ""){
+                            alert("Please Select a File or Folder");
+                        }    
+                        else if(read.checked == false && write.checked == false && execute.checked == false) {
+                            alert("Please Check 1 or More Permission Changes");
+                        }
+                        else if(document.getElementById("reasoning").value == ""){
+                            alert("Required Field(s) Empty - Permission Change Reasoning");
+                        }
+                        else if(document.getElementById("requesters_email").value == ""){
+                            alert("Required Field(s) Empty - Requester's Email");
+                        }
+                        if(read.checked == true && document.getElementById("employee_name").value != "" && document.getElementById("employee_id").value != "" && document.getElementById("username").value != "" && document.getElementById("supervisor").value != "" && document.getElementById("file").value != "" && document.getElementById("reasoning").value != "" && document.getElementById("requesters_email").value != "") {
+                            var read_permission = document.getElementById("read_permission").value;
+                            cell1.innerHTML = read_permission;
+                        }
+                        if(write.checked == true && document.getElementById("employee_name").value != "" && document.getElementById("employee_id").value != "" && document.getElementById("username").value != "" && document.getElementById("supervisor").value != "" && document.getElementById("file").value != "" && document.getElementById("reasoning").value != "" && document.getElementById("requesters_email").value != "") {
+                            var write_permission = document.getElementById("write_permission").value;
+                            cell2.innerHTML = write_permission;
+                        }
+                        if(execute.checked == true && document.getElementById("employee_name").value != "" && document.getElementById("employee_id").value != "" && document.getElementById("username").value != "" && document.getElementById("supervisor").value != "" && document.getElementById("file").value != "" && document.getElementById("reasoning").value != "" && document.getElementById("requesters_email").value != "") {
+                            var execute_permission = document.getElementById("execute_permission").value;
+                            cell3.innerHTML = execute_permission;
+                        }
+                    }
+
+                    function origin() {
+                        window.location.reload();
+                    }
+                </script>
+            </form>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+
+</html>
